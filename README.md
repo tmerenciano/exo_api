@@ -28,7 +28,7 @@ C'est un fichier "modèle" que vous devez adapter à votre situation :
  
 Exemple : 
 
-Si votre application est dans ce dossier : **'C:\xampp\htdocs\works\bugApp\'**, le PATH est **'works/bugApp/'**.
+Si votre application est dans ce dossier : **'C:\xampp\htdocs\works\tutoAPI\'**, le PATH est **'works/tutoAPI/'**.
 - Pas de slash au début.
 - Un slash à la fin.
 
