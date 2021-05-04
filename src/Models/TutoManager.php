@@ -48,6 +48,7 @@ class TutoManager extends Manager
             $tuto->setId($row['id']);
             $tuto->setTitle($row['title']);
             $tuto->setDescription($row['description']);
+            $tuto->setCreatedAt($row["createdAt"]);
             $tutos[] = $tuto;
 
         }
@@ -58,7 +59,23 @@ class TutoManager extends Manager
 
     public function add(Tuto $tuto){
 
-        // Ajout d'un tuto en BDD
+        // Connexion à la BDD
+        $dbh = static::connectDb();
+
+        // Requête
+        $sth = $dbh->prepare('INSERT INTO tutos (title, description, createdAt) VALUES (:title, :description, :createdAt)');
+        $title = $tuto->getTitle();
+        $sth->bindParam(':title', $title);
+        $description = $tuto->getDescription();
+        $sth->bindParam(':description', $description);
+        $createdAt = $tuto->getCreatedAt();
+        $sth->bindParam(':createdAt', $createdAt);
+        $sth->execute();
+
+        // Retour
+        $id = $dbh->lastInsertId();
+        $tuto->setId($id);
+        return $tuto;
 
     }
 

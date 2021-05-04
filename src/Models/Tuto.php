@@ -85,13 +85,13 @@ class Tuto {
     /**
      * Set the value of createdAt
      *
+     * @param $createdAt
      * @return  self
-     */ 
+     */
     public function setCreatedAt($createdAt)
     {
-        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $createdAt);
-        
-        $this->createdAt = $date;
+
+        $this->createdAt = $createdAt;
 
         return $this;
     }
