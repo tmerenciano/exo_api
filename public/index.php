@@ -4,9 +4,14 @@ require('../src/init.php');
 
 use tutoAPI\Controllers\tutoController;
 
+// Evaluation de la requête
+$length = strlen(BASE_PATH) + 1;
+$uri = substr($_SERVER['REQUEST_URI'], $length) ;
+$method = $_SERVER['REQUEST_METHOD'];
+
 switch(true) {
 
-    case preg_match('#^tutos/(\d+)$#', $uri, $matches):
+    case preg_match('#^tutos/(\d+)$#', $uri, $matches) && $method == 'GET':
 
         $id = $matches[1];
 
@@ -16,22 +21,14 @@ switch(true) {
 
         break;
     
-    case preg_match('#^tutos((\?)|$)#', $uri):
+    case preg_match('#^tutos((\?)|$)#', $uri) && $method == 'GET':
 
         $controller = new tutoController();
 
         return $controller->index();
 
         break;
-    
-    case ($uri == 'tutos/add'):
 
-        $controller = new tutoController();
-        
-        return $controller->add();
-        
-        break;
-    
     default:
     
     http_response_code(404);

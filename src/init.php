@@ -17,6 +17,4 @@ define('WEB_PORT', '8080');
 define('BASE_PATH', PATH.'public/');
 define('PUBLIC_PATH', PROTOCOL.'://'.WEB_HOST.':'.WEB_PORT.'/'.BASE_PATH);
 
-// Détermination de la requête
-$length = strlen(BASE_PATH);
-$uri = substr($_SERVER['REQUEST_URI'], $length+1) ;
+
