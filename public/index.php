@@ -33,6 +33,6 @@ switch(true) {
     
     http_response_code(404);
     
-    echo "<h1>Tutoriels</h1><p>Page par défaut</p>";
+    echo json_encode('erreur 404');
     
 }
