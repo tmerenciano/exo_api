@@ -2,7 +2,7 @@
 
 Pour utiliser ce micro-framework :
 
-## Créer la base de données, et une table pour enregistrer les incidents.
+## Créer la base de données, et une table pour enregistrer les tutos.
 
 Ouvrir PHPMyAdmin et créer une base de données (vous pouvez la nommer "tutos" par exemple.
 Ouvrir la base de données créée et executer le fichier schema.sql fourni.

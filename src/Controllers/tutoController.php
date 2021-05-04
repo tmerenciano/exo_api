@@ -28,7 +28,9 @@ class tutoController extends abstractController
 
         $tutos = [];
 
-        // TODO: liste des tutos
+        $manager = new TutoManager();
+
+        $tutos = $manager->findAll();
 
         return $this->jsonResponse($tutos, 200);
     }

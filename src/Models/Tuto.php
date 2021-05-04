@@ -8,7 +8,6 @@ class Tuto {
     public $title;
     public $description;
     public $createdAt;
-    public $closed;
 
     function __construct() {
         

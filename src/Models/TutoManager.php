@@ -33,19 +33,38 @@ class TutoManager extends Manager
     public function findAll()
     {
 
-        // Récupération de tous les incidents en BDD
+        // Connexion à la BDD
+        $dbh = static::connectDb();
+
+        // Requête
+        $sth = $dbh->prepare('SELECT * FROM tutos');
+        $sth->execute();
+
+        $tutos = [];
+
+        while($row = $sth->fetch(\PDO::FETCH_ASSOC)){
+
+            $tuto = new Tuto();
+            $tuto->setId($row['id']);
+            $tuto->setTitle($row['title']);
+            $tuto->setDescription($row['description']);
+            $tutos[] = $tuto;
+
+        }
+
+        return $tutos;
 
     }
 
     public function add(Tuto $tuto){
 
-        // Ajout d'un incident en BDD
+        // Ajout d'un tuto en BDD
 
     }
 
     public function update(Tuto $tuto){
 
-       // Modification d'un incident en BDD
+       // Modification d'un tuto en BDD
 
     }
 
