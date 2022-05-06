@@ -23,18 +23,6 @@ class tutoController extends abstractController
         return $this->jsonResponse($tuto, 200);
     }
 
-    public function index()
-    {
-
-        $tutos = [];
-
-        $manager = new TutoManager();
-
-        $tutos = $manager->findAll();
-
-        return $this->jsonResponse($tutos, 200);
-    }
-
     public function update($id)
     {
 
@@ -81,5 +69,20 @@ class tutoController extends abstractController
         // Template issu de la Vue
 
         return $this->jsonResponse($tuto, 200);
+    }
+
+    public function index()
+    {
+        $tutos = [];
+        $manager = new TutoManager();
+        if(isset($_GET["page"]))
+        {
+            $tutos = $manager->findAll($_GET["page"]);
+        }
+        else
+        {
+            $tutos = $manager->findAll();
+        }
+        return $this->jsonResponse($tutos, 200);
     }
 }

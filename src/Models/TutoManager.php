@@ -30,20 +30,23 @@ class TutoManager extends Manager
         return $tuto;
     }
 
-    public function findAll()
+    public function findAll($page=0)
     {
-
-        // Connexion à la BDD
         $dbh = static::connectDb();
-
-        // Requête
-        $sth = $dbh->prepare('SELECT * FROM tutos');
+        //Pagination par page de 5 cas
+        if($page==0)
+        {
+            $sth = $dbh->prepare('SELECT * FROM tutos');
+        }
+        else
+        {
+            $page=$page*5-5;
+            $sth = $dbh->prepare('SELECT * FROM tutos LIMIT 5 OFFSET :page');
+            $sth->bindParam(':page', $page, \PDO::PARAM_INT);
+        }
         $sth->execute();
-
         $tutos = [];
-
-        while ($row = $sth->fetch(\PDO::FETCH_ASSOC)) {
-
+        while($row = $sth->fetch(\PDO::FETCH_ASSOC)){
             $tuto = new Tuto();
             $tuto->setId($row['id']);
             $tuto->setTitle($row['title']);
@@ -51,7 +54,6 @@ class TutoManager extends Manager
             $tuto->setCreatedAt($row["createdAt"]);
             $tutos[] = $tuto;
         }
-
         return $tutos;
     }
 
